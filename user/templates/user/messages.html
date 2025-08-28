@@ -1,0 +1,75 @@
+<style>
+    .messagesContainer {
+    position: fixed;
+    top: 10%; /* Mais acima da tela */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column-reverse; /* Novas mensagens aparecem embaixo e empurram as antigas para cima */
+    gap: 10px;
+    align-items: center;
+}
+
+/* Estilo base */
+.message {
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    opacity: 0;
+    transform: translateY(50px); /* Entra vindo de baixo */
+    transition: all 0.5s ease;
+    min-width: 250px;
+    text-align: center;
+}
+
+/* Aparecendo */
+.message.show {
+    opacity: 1;
+    transform: translateY(0); /* Fica na posição final */
+}
+
+/* Sumindo */
+.message.hide {
+    opacity: 0;
+    transform: translateY(-50px); /* Sobe ao desaparecer */
+}
+
+/* Tipos de mensagem */
+.message.success { background-color: #50d054; }
+.message.error   { background-color: #f44336; }
+.message.warning { background-color: #ff9800; }
+.message.info    { background-color: #2196f3; }
+
+</style>
+
+<div class="messagesContainer">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message {{ message.tags }}">
+                <p>{{ message }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const messages = document.querySelectorAll(".message");
+        messages.forEach((msg, index) => {
+            // Efeito cascata na entrada
+            setTimeout(() => {
+                msg.classList.add("show");
+                // Remove depois de 4 segundos
+                setTimeout(() => {
+                    msg.classList.remove("show");
+                    msg.classList.add("hide");
+                }, 4000);
+            }, index * 300);
+        });
+    });
+</script>

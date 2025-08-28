@@ -1,0 +1,72 @@
+{% extends 'games/base.html' %}
+
+{% load static %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'user/css/profile.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+{% endblock extra_head %}
+
+{% block title %}Purchased Games{% endblock title %}
+
+{% block content %}
+<main id="main-content">
+    <div class="profile-container">
+        
+        <!-- Left part (green) -->
+        <div class="green-part">
+            <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="profile-picture">
+            <h3>Welcome, {{ user.username }}!</h3>
+            <p>Member since: {{ user.date_joined|date:"F j, Y" }}</p>
+            <div class="btns">
+                <hr class="line">
+                <div class="profile-info">
+                    <a href="{% url 'profile_info' %}" class="btn">
+                        <i class="fa fa-user"></i> Profile Info
+                    </a>
+                </div>
+                <div class="purchased-games">
+                    <a href="{% url 'purchased_games' %}" class="btn active">
+                        <i class="fa fa-gamepad"></i> Purchased Games
+                    </a>
+                </div>
+                
+
+                <div class="logoutForm">
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn" name="logout">
+                            <i class="fa fa-sign-out"></i> Log Out
+                        </button>
+                    </form>
+                </div>
+                <div class="deleteAccountForm">
+                    <form action="{% url 'delete_account' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn" name="delete_account">
+                            <i class="fa fa-trash"></i> Delete Account
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right part (white) -->
+        <div class="white-part">
+            <div class="purchased-games-title">
+                <h2>Purchased Games</h2>
+            </div>
+            {% if purchased_games %}
+                <div class="game-list">
+                    {% for game in purchased_games %}
+                        {% include 'user/games.html' %}
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>You haven't purchased any games yet.</p>
+            {% endif %}
+        </div>
+
+    </div>
+</main>
+{% endblock content %}

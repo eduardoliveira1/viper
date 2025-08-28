@@ -1,0 +1,49 @@
+{% extends "games/base.html" %}
+{% load static %}
+
+{% block title %} Details | {{ game.title }} {% endblock title %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'games/css/details.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+    <main>
+        <div class="details">
+            <div class="gameImg">
+                <img src="{{ game.img.url }}" alt="">
+            </div>
+            <div class="description">
+                <h1>{{ game.title }}</h1>
+                <p><b>Description:</b> {{ game.description }}</p>
+                <p><b>Genres:</b>
+                    {% for genre in game.genres.all %}
+                    {{ genre.name }}{% if not forloop.last %}, {% endif %}
+                    {% empty %}
+                    None
+                    {% endfor %}
+                </p>
+                <p><b>Company:</b> {{ game.company.name }}</p>
+                <div class="priceAndBuyBtn">
+                    {% if game in user.purchased_games.all %}
+                        <h3>You already have this game!</h3>
+                    {% else %}
+                        {% if game.price > 0 %}
+                            <h4>${{ game.price }}</h4> 
+                            <form action="{% url 'buyGame' game.id %}" class="buyGame">
+                                <button class="buyBtn" type="submit" name="buy">Buy</button>
+                            </form>
+                        {% else %}
+                            <h4>Free!</h4>
+                            <form action="{% url 'buyGame' game.id %}" class="buyGame">
+                                <button class="buyBtn" type="submit" name="buy">Download</button>
+                            </form>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+        </main>
+    {% endblock content %}
+    

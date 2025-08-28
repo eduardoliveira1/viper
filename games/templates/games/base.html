@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} base {% endblock title %}</title>
+    {% block extra_head %}{% endblock extra_head %}
+    <link rel="icon" href="{% static 'games/img/vibora-logo.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'games/css/base.css' %}">
+</head>
+<body>
+    {% block navBar %}
+        <nav>
+            <div class="logo">
+                <a href="{% url 'game_list' %}"><img src="{% static 'games/img/vibora-logo.png' %}" alt=""></a>
+            </div>
+            <div class="navigateLinks">
+                <a href="{% url 'game_list' %}">All Games</a>
+                {% if not user %}
+                    <a href="{% url 'signup' %}">Sign Up</a>
+                    <button class="loginBtn"><a id="loginLink" href="{% url 'login' %}">Log In</a></button>
+                {% else %}
+                    <h4>Welcome, {{ user.username }}!</h4>
+                    <a id="userBtn" href="{% url 'profile_info' %}"><img src="{% static 'games/img/user-icon.svg' %}" alt=""></a>
+                {% endif %}
+            </div>
+        </nav>
+    {% endblock navBar %}
+    
+    {% include 'user/messages.html' %}
+    {% block content %}
+    {% endblock content %}
+
+    {% block footer %} 
+        <footer>
+            <h3>© 2024 Viper Games. All rights reserved.</h3>
+        </footer>
+    {% endblock footer %}
+</body>
+</html>

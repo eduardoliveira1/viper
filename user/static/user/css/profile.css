@@ -1,0 +1,201 @@
+.btns {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.btns a,
+.btns form,
+.company-dashboard,
+.purchased-games,
+.profile-info {
+    width: 100%; /* garante largura total da .green-part */
+    display: flex;
+}
+
+.line {
+    width: 60%;               /* largura da linha */
+    border: none;
+    border-top: 2px solid #fff;
+    margin-bottom: 10px;
+}
+
+.btn {
+    background-color: transparent;
+    width: 100%; /* ocupa todo o espaço do pai */
+    color: #fff;
+    border: none;
+    padding: 12px 20px;    
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s ease-in-out;
+} 
+
+.btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.active {
+    background-color: #53b858;
+}
+
+#main-content {
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.profile-container {
+    display: flex;
+    align-items: stretch;
+    background-color: #f4f4f4;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(202, 192, 192, 0.596);
+    width: 95%;
+    min-height: 75vh;
+}
+
+.purchased-games-title {
+    width: 100%;
+    text-align: center;
+    
+}
+
+.green-part {
+    background-color: #2ecc71;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+    width: 40%;    
+    color: white;
+}
+
+.green-part a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.green-part p {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.profile-picture {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+#picture_input {
+    box-shadow: none;
+    padding: 0;
+    color: black;
+}
+
+.white-part {
+    width: 60%;
+    height: 100%;
+    padding: 15px 30px;
+    color: #2ecc71;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.white-part input {
+    height: 30px;
+    padding: 0 10px;
+    box-shadow: 0 0 4px 1px #6dd972cb;
+    border-radius: 5px;
+    width: 320px;
+    border: none;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+.info-area {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.fields {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    gap: 40px;
+}
+
+.saveBtn {
+    width: 280px;
+    height: 40px;
+    font-weight: bold;
+    font-size: 18px;
+    background-color: rgb(51, 171, 211);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.cancelBtn {
+    width: 280px;
+    height: 40px;
+    font-weight: bold;
+    font-size: 18px;
+    background-color: rgb(211, 51, 51);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btns-form {
+    display: flex;
+    justify-content: space-between;
+    width: 100%
+
+}
+
+.game-list {
+    margin-top: 20px;
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    gap: 27px;
+    width: 100%;
+}
+
+.logoutForm, .deleteAccountForm {
+    width: 100%; /* remove conflito e padroniza */
+    display: flex;
+    flex-direction: column;
+}
+
+.logoutForm {
+    margin-top: 30px;
+}

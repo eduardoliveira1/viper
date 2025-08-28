@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Login{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'user/css/base.css' %}">
+    <link rel="icon" href="{% static 'games/img/vibora-logo.png' %}" type="image/png">
+    {% block extra_head %}{% endblock extra_head %}
+</head>
+<body>
+    {% include 'user/messages.html' %}
+    {% block content %}
+        <main>
+            <div class="formContainer">
+                <h1>{% block titleForm %}{% endblock titleForm %}</h1>
+                <form action="{% block url %}{% endblock url %}" class="defaultForm" method="post">
+                    {% csrf_token %}
+                    {% block fields %}
+                    {% endblock fields %}
+                    <button class="submitBtn" type="submit">{% block textBtn %}{% endblock textBtn %}</button>
+                </form>
+                {% block extraFormContent %}{% endblock extraFormContent %}
+            </div>
+            <div class="image">
+
+                <img src="{% static 'user/img/loginImg.png' %}" alt="">
+            </div>
+        </main>
+    {% endblock content %}
+</body>
+</html>
+    

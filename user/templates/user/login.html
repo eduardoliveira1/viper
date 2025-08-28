@@ -1,0 +1,23 @@
+{% extends "user/base.html" %}
+
+{% block title %}Login{% endblock title %}
+
+{% block url %}{% url 'login' %}{% endblock url %}
+
+{% block titleForm %}LOGIN{% endblock titleForm %}
+
+{% block fields %}
+    <input type="text" name="username" placeholder="Username" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <div>
+
+        <p> Forgot your Password? <a href="">Click here!</a> </p>
+        <p> Want post games? <a href="{% url 'login' %}">Create a dev account!</a> </p>
+    </div>
+{% endblock fields %}
+
+{% block textBtn %}Log in{% endblock textBtn %}
+
+{% block extraFormContent %}
+<p> Don't have an account? <a href="{% url 'signup' %}">Create here!</a> </p>
+{% endblock extraFormContent %}
