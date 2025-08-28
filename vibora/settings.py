@@ -1,14 +1,15 @@
 from pathlib import Path
 from django.contrib.messages import constants as message_constants
+from vibora import private
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-*((v*v8mo_**pjt5$*&+)vs+v8ox_$3ihg%i)ccw%3#7+xf$s2'
+SECRET_KEY = private.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = private.ALLOWED_HOSTS
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
@@ -61,12 +62,11 @@ WSGI_APPLICATION = 'vibora.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+import dj_database_url
+
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.parse(private.DATABASE_URL, conn_max_age=600)
 }
 
 
